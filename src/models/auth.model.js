@@ -1,1 +1,1 @@
-test
+const authModel = {}
