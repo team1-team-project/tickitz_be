@@ -4,7 +4,8 @@
   "description": "\"Booking Movie Ticket App with Express Js and Postgresql\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "keywords": [
     "\"Booking",
