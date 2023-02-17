@@ -2,11 +2,12 @@
 const { urlencoded, json } = require("express");
 const express = require("express");
 const app = express();
-// const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
+require("dotenv").config();
 const { PORT } = process.env;
 
 //import internal
+
 //connect database otw
 const router = require("./src/routes/index");
 
