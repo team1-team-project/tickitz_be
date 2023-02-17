@@ -3,12 +3,12 @@ const { v4: uuidv4 } = require("uuid");
 
 const cinemaModel = {
   get: (queryParams) => {
-    const { search = "" } = queryParams;
+    const { search = "", limit = "2", page = 1 } = queryParams;
     return new Promise((resolve, reject) => {
       db.query(
         `SELECT * FROM cinemas ${
           search ? `WHERE cinema_name ILIKE '%${search}%' ` : ""
-        }`,
+        } LIMIT ${limit} OFFSET ${(page - 1) * limit}`,
         (errorGetCinemas, resultGetCinemas) => {
           if (errorGetCinemas) {
             return reject(errorGetCinemas.message);
