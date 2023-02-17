@@ -1,1 +1,1 @@
-const authModel = {}
+const authModel = {};

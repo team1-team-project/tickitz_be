@@ -1,4 +1,5 @@
 //import eskternal
+require("dotenv").config();
 const { urlencoded, json } = require("express");
 const express = require("express");
 const app = express();
