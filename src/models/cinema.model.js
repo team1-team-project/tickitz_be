@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const cinemaModel = {
   get: (queryParams) => {
-    const { search = "", limit = "2", page = 1 } = queryParams;
+    const { search = "", limit = "9", page = 1 } = queryParams;
     return new Promise((resolve, reject) => {
       db.query(
         `SELECT * FROM cinemas ${
@@ -12,9 +12,8 @@ const cinemaModel = {
         (errorGetCinemas, resultGetCinemas) => {
           if (errorGetCinemas) {
             return reject(errorGetCinemas.message);
-          } else {
-            return resolve(resultGetCinemas.rows);
           }
+          return resolve(resultGetCinemas.rows);
         }
       );
     });
