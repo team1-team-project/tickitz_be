@@ -24,7 +24,7 @@ const cinemaController = {
     return cinemaModel
       .getCinemaDetail(id)
       .then((result) => {
-        if (result === undefined) {
+        if (result.length === 0) {
           return res
             .status(404)
             .send({ data: result, message: `Cannot find cinema ${id}!` });
