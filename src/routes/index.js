@@ -4,6 +4,10 @@ const router = express();
 const cinemaRoute = require("./cinema.route");
 const authRoute = require("./auth_router")
 const orderRoute = require("./order")
+const movieTimeRoute = require("./movieTime.route");
+
+// routing movie cinema
+router.use("/movie-time", movieTimeRoute);
 
 // routing landing page
 router.get("/", (req, res) => {
@@ -12,6 +16,6 @@ router.get("/", (req, res) => {
 
 router.use("/cinema", cinemaRoute);
 router.use("/auth", authRoute)
-router.use("/", orderRoute)
+router.use("/order", orderRoute)
 
 module.exports = router;
