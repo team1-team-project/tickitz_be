@@ -2,6 +2,8 @@
 const express = require("express");
 const router = express();
 const cinemaRoute = require("./cinema.route");
+const userProfileRoute = require("./profile.route");
+const bookingRoute = require("./booking.route");
 const movieRoute = require("./movie.route");
 const historyRoute = require("./history.route");
 const authRoute = require("./auth_router")
@@ -17,6 +19,8 @@ router.get("/", (req, res) => {
 });
 
 router.use("/cinema", cinemaRoute);
+router.use("/profile", userProfileRoute);
+router.use("/booking", bookingRoute);
 router.use("/movie", movieRoute);
 router.use("/history", historyRoute);
 router.use("/auth", authRoute)
