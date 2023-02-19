@@ -1,7 +1,9 @@
 //import eksternal
 const express = require("express");
 const router = express();
-
+const cinemaRoute = require("./cinema.route");
+const authRoute = require("./auth_router")
+const orderRoute = require("./order")
 const movieTimeRoute = require("./movieTime.route");
 
 // routing movie cinema
@@ -13,5 +15,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/cinema", cinemaRoute);
+router.use("/auth", authRoute)
+router.use("/order", orderRoute)
 
 module.exports = router;
