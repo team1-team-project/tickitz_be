@@ -1,4 +1,4 @@
-# Ticiktz by Fun(a)ction Technology
+# Tickitz by Fun(a)ction Technology
 <img src="./public/uploads/Tickitz-logo.svg" alt="logo tickitz" />
 A Web Application used to order movie tickets online. Tickitz has provided several payment methods ranging from e-wallets, banks and credit cards. Movies that can be ordered are also complete and there are also many cinemas provided. Like ebv.id, Cineone21, Hiflix. These cinemas have also been provided in several areas. If you are interested in using this application, read the guide below.
 
@@ -14,7 +14,7 @@ A Web Application used to order movie tickets online. Tickitz has provided sever
 ### Version Control
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 ### Other
-![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
 
 ## Give stars for this application :smile::smile::smile:
 
@@ -28,5 +28,44 @@ A Web Application used to order movie tickets online. Tickitz has provided sever
 npm install
 ```
 3. Install Postgresql or PgAdmin(GUI)
-4. Create Database
-<img src="https://trello.com/1/cards/63ee4965b6c35f810b1db84c/attachments/63ef9ffd0840bcf2a8dcdf02/previews/63ef9ffe0840bcf2a8dcdf13/download/database_schema.jpg" alt="database schema" />
+4. Create Database<br>
+[Database Schema](https://drawsql.app/teams/array-team/diagrams/fun-a-ction)
+  - Open link
+  - Tab menu File > Export
+  - Open pgAdmin and Import file
+5. Configure Enviroment Variable
+- Open source code in Text Editor
+- Open .env file
+- Configure
+***
+DB_USER<br>
+DB_PASSWORD<br>
+PORT
+***
+6. Run server
+```sh
+npm start
+```
+*if error install nodemon packages first
+
+# Frontend Installation
+1. Clone the Repo
+```sh
+git clone https://github.com/team1-team-project/tickitz_fe
+```
+2. Install NPM Packages
+```sh
+npm install
+```
+3. Run App
+```sh
+npm start
+```
+## Contact
+Team:  Fun(a)ction Tech - [funactiontech@gmail.com](mailto:funactiontech@gmail.com)
+## Team
+- [Mohammad Yasfiq](https://github.com/Yasfiq)
+- [Maulana Rheza Ardiansyah](https://github.com/MaulanaRhezaArdiansyah)
+- [Ajimas](https://github.com/jiamudza)
+- [Muhammad Risky Fadillah](https://github.com/RiskiFadillah)
+- [M. Raynoalief Ridwan](https://github.com/reynoalief)
