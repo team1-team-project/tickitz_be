@@ -13,3 +13,20 @@ A Web Application used to order movie tickets online. Tickitz has provided sever
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 ### Version Control
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+### Other
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)
+
+## Give stars for this application :smile::smile::smile:
+
+# Backend Installation
+1. Clone the Repo
+``` sh
+ git clone https://github.com/team1-team-project/tickitz_be
+```
+2. Install NPM Packages
+``` sh
+npm install
+```
+3. Install Postgresql or PgAdmin(GUI)
+4. Create Database
+<img src="https://trello.com/1/cards/63ee4965b6c35f810b1db84c/attachments/63ef9ffd0840bcf2a8dcdf02/previews/63ef9ffe0840bcf2a8dcdf13/download/database_schema.jpg" alt="database schema" />
