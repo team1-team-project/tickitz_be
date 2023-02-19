@@ -3,6 +3,7 @@ const express = require("express");
 const router = express();
 const cinemaRoute = require("./cinema.route");
 const authRoute = require("./auth_router")
+const orderRoute = require("./order")
 
 // routing landing page
 router.get("/", (req, res) => {
@@ -11,5 +12,6 @@ router.get("/", (req, res) => {
 
 router.use("/cinema", cinemaRoute);
 router.use("/auth", authRoute)
+router.use("/", orderRoute)
 
 module.exports = router;
