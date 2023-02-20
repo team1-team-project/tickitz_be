@@ -25,7 +25,7 @@ app.use(json());
 app.use(cors()); //semua bisa akses
 
 //routes parent
-app.use("/api/", router);
+app.use("https://tickitz.herokuapp.com/api/", router);
 
 //endpoint
 //routing if can't get a routes
