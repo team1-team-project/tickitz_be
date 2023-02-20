@@ -76,6 +76,15 @@ const authController = {
     
 },
 
+  forgotPassword: (req, res) => {
+    return authModel
+    .getProfileByEmail(req.params.email)
+    .then(result => {
+      res.status(200).send({message: "success get user by email", data: result})
+    })
+    .catch(err => res.status(500).send({message: "failed", data: err}))
+  } 
+
 };
 
 module.exports = authController;

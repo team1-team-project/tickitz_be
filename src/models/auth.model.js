@@ -66,6 +66,18 @@ const authModel = {
             }
         })
     })
+  },
+
+  getProfileByEmail: (email) => {
+    return new Promise((resolve, reject) => {
+      db.query(`select id_profile from profile where email='${email}'`, (err, result) => {
+        if(err) {
+          return reject(err.message)
+        } else {
+          return resolve(result.rows[0])
+        }
+      })
+    })
   }
 };
 
