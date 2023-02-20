@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
     //cb(null, ${filename[0]}-${new Date().getTime()}.${filename[1]});
     //ketika ada 2 titik pada file maka split tidak bekerja dengan baik
 
-    cb(null, ${new Date().getTime()}-${file.originalname});
+    cb(null, `${new Date().getTime()}-${file.originalname}`);
   },
 });
 
@@ -29,7 +29,7 @@ const formUpload = multer({
   fileFilter: (req, file, cb) => {
     //console.log(file);
     let formatType = path.extname(file.originalname);
-    if (formatType == ".png"  formatType == ".jpg"  formatType == ".jpeg") {
+    if (formatType == ".png" || formatType == ".jpg" || formatType == ".jpeg") {
       cb(null, true);
     } else {
       cb("image not valid", false);
@@ -41,12 +41,12 @@ const formUpload = multer({
   //dest: './public/data/uploads/'
 });
 
-/const formUploadOnline = multer({
+/*const formUploadOnline = multer({
   storage: storageOnline, //test bisa atau ga
   fileFilter: (req, file, cb) => {
     //console.log(file);
     let formatType = path.extname(file.originalname);
-    if (formatType == ".png"  formatType == ".jpg"  formatType == ".jpeg") {
+    if (formatType == ".png" || formatType == ".jpg" || formatType == ".jpeg") {
       cb(null, true);
     } else {
       cb("image not valid", false);

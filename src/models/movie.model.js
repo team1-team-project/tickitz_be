@@ -70,10 +70,49 @@ const movieModel = {
 
     const q = `INSERT INTO movies(${key}) VALUES (${finalResult}) RETURNING *`;
     db.query(q, val, (err, res) => {
-      if (res) {
+      if (err) {
         cb(err, res);
       } else {
-        cb(err, res);
+        // cb(err, res);
+        db.query(`SELECT * FROM cinemas`, (error, result) => {
+          if (error) {
+            cb(error, result);
+          } else {
+            // console.log(result.rows);
+            const cinemas = result.rows.map((item) => item.id_cinema);
+            db.query(`SELECT * FROM time`, (errTime, resTime) => {
+              if (errTime) {
+                cb(errTime, resTime);
+              } else {
+                const times = resTime.rows.map((item) => item.id_time);
+                db.query(`SELECT * FROM seat`, (errSeat, resSeat) => {
+                  if (errSeat) {
+                    cb(errSeat, resSeat);
+                  } else {
+                    const seats = resSeat.rows.map((item) => item.id_seat);
+                    cinemas.map((cinema) => {
+                      times.map((time) => {
+                        seats.map((seat) => {
+                          db.query(
+                            `INSERT INTO data_movies VALUES ($1,$2,$3,$4)`,
+                            [uuidv4(), time, cinema, seat],
+                            (errData, resData) => {
+                              if (errData) {
+                                console.log("gagal");
+                                cb(errData, resData);
+                              }
+                            }
+                          );
+                        });
+                      });
+                    });
+                    cb(err, res);
+                  }
+                });
+              }
+            });
+          }
+        });
       }
     });
   },
