@@ -5,7 +5,7 @@ const movieTimeModel = {
   getMovieTime: (id, id_cinema) => {
     return new Promise((success, failed) => {
       db.query(
-        "SELECT t.start_time FROM time AS t INNER JOIN data_movies AS d ON d.id_movies=$1 AND d.id_time=t.id_time AND d.id_cinema=$2",
+        "SELECT t.start_time FROM time AS t INNER JOIN data_movies AS d ON d.id_movies=$1 AND d.id_time=t.id_time AND d.id_room=$2",
         [id, id_cinema],
         (error, result) => {
           if (error) return failed(error.message);
