@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
-const { PORT } = process.env;
+const PORT = process.env.PORT || 5000;
 
 //import internal
 
@@ -25,7 +25,7 @@ app.use(json());
 app.use(cors()); //semua bisa akses
 
 //routes parent
-app.use("https://tickitz.herokuapp.com/api/", router);
+app.use("/api/", router);
 
 //endpoint
 //routing if can't get a routes
