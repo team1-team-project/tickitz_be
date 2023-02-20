@@ -5,6 +5,6 @@ const router = express.Router()
 const orderController = require("../controllers/order")
 
 
-router.get("/order/:id_profile/:id_booking", orderController.getDetail)
+router.get("/:id_profile/:id_booking", orderController.getDetail)
 
 module.exports = router
