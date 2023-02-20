@@ -94,8 +94,15 @@ const movieModel = {
                       times.map((time) => {
                         seats.map((seat) => {
                           db.query(
-                            `INSERT INTO data_movies VALUES ($1,$2,$3,$4)`,
-                            [uuidv4(), time, cinema, seat],
+                            `INSERT INTO data_movies VALUES ($1,$2,$3,$4,$5,$6)`,
+                            [
+                              uuidv4(),
+                              time,
+                              cinema,
+                              seat,
+                              "available",
+                              object.id_movies,
+                            ],
                             (errData, resData) => {
                               if (errData) {
                                 console.log("gagal");

@@ -16,7 +16,10 @@ const orderModel = {
           if (err) {
             return reject(err.message);
           } else {
-            return resolve(result.rows[0]);
+            // const seatId = result.rows[0].seat
+            //   .replace(/[{"'}]/g, "")
+            //   .split(",");
+            return resolve(result.rows);
           }
         }
       );

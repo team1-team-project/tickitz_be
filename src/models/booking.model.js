@@ -31,30 +31,44 @@ const bookingModel = {
       const seats = seat.split(",");
       for (let i = 0; i < seats.length; i++) {
         db.query(
-          `UPDATE data_movies SET status='sold' WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4 RETURNING id_data`,
-          [id_movies, id_time, id_room, seats[i]],
-          (err, res) => {
-            if (err) {
-              return reject(err);
-            } else {
-              db.query(
-                `INSERT INTO booking VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-                [
-                  id_booking,
-                  id_payment,
-                  id_profile,
-                  res.rows[0].id_data,
-                  date,
-                  total_payment,
-                  seats,
-                ],
-                (error, result) => {
-                  if (error) {
-                    return reject(error);
+          `SELECT seat_number FROM seat WHERE id_seat=$1`,
+          [seats[i]],
+          (errGetSeat, resGetSeat) => {
+            if (errGetSeat) return reject(errGetSeat.message);
+            db.query(
+              `SELECT id_data FROM data_movies WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4`,
+              [id_movies, id_time, id_room, seats[i]],
+              (errData, resData) => {
+                if (errData) return reject(errData.message);
+                db.query(
+                  `UPDATE data_movies SET status='sold' WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4`,
+                  [id_movies, id_time, id_room, seats[i]],
+                  (err, res) => {
+                    if (err) {
+                      return reject(err);
+                    } else {
+                      db.query(
+                        `INSERT INTO booking VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+                        [
+                          id_booking,
+                          id_payment,
+                          id_profile,
+                          resData.rows[0].id_data,
+                          date,
+                          total_payment,
+                          resGetSeat.rows[0].seat_number,
+                        ],
+                        (error, result) => {
+                          if (error) {
+                            return reject(error);
+                          }
+                        }
+                      );
+                    }
                   }
-                }
-              );
-            }
+                );
+              }
+            );
           }
         );
       }
