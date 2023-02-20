@@ -56,22 +56,31 @@ const authModel = {
               `UPDATE profile SET 
                   password='${password || result.rows[0].password}'
                      WHERE id_profile='${id_profile}'`,
-              (err, result) => {
-                if (err) {
-                  return reject(err.message);
-                } else {
-                  return resolve({
-                    id_profile,
-                    password,
-                  });
-                }
-              }
-            );
-          }
-        }
-      );
-    });
+                     (err, result) => {
+                        if(err) {
+                            return reject(err.message)
+                        } else{
+                            return resolve({
+                                id_profile, password
+                            })
+                        }
+                     })
+            }
+        })
+    })
   },
+
+  getProfileByEmail: (email) => {
+    return new Promise((resolve, reject) => {
+      db.query(`select id_profile from profile where email='${email}'`, (err, result) => {
+        if(err) {
+          return reject(err.message)
+        } else {
+          return resolve(result.rows[0])
+        }
+      })
+    })
+  }
 };
 
 module.exports = authModel;
