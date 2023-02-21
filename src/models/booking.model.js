@@ -26,7 +26,7 @@ const bookingModel = {
     id_room,
     seat,
   }) => {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       const id_booking = uuidv4();
       const seats = seat.split(",");
       for (let i = 0; i < seats.length; i++) {
