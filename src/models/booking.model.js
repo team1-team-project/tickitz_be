@@ -63,7 +63,7 @@ const bookingModel = {
                             if (error) {
                               return reject(error);
                             }
-                            return resolve(result.rows);
+                            return resolve([...result.rows, seat]);
                           }
                         );
                       }
