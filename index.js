@@ -11,6 +11,7 @@ const { PORT } = process.env;
 
 //connect database otw
 const router = require("./src/routes/index");
+const sendEmail = require("./src/utils/sendEmail");
 
 //menerima x-www.form.urlencoded
 app.use(urlencoded({ extended: true }));
@@ -26,6 +27,24 @@ app.use(cors()); //semua bisa akses
 
 //routes parent
 app.use("/api/", router);
+
+// mail route
+app.post("/api/sendmail", async (req,res) => {
+  const {email, message} = req.body;
+
+  try {
+    const send_to = email;
+    const sent_from = process.env.EMAIL_USER;
+    const reply_to = email;
+    const subject = "Reset Password Verification mail"
+    const html = message;
+
+    await sendEmail(subject, html, send_to, sent_from, reply_to)
+    res.status(200).send({success: 'true', message: "email sent"})
+  } catch (error) {
+    res.json(500).send(err.message)
+  }
+})
 
 //endpoint
 //routing if can't get a routes
