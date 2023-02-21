@@ -26,7 +26,7 @@ const bookingModel = {
     id_room,
     seat,
   }) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       const id_booking = uuidv4();
       const seats = seat.split(",");
       for (let i = 0; i < seats.length; i++) {
@@ -72,7 +72,9 @@ const bookingModel = {
           }
         );
       }
-      return resolve("Transaction Success!");
+      setTimeout(() => {
+        return resolve("Transaction Success!");
+      }, 1000);
     });
   },
 };
