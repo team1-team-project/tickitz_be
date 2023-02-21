@@ -5,7 +5,7 @@ const orderModel = {
   getDetail: ({ id_profile, id_booking }) => {
     return new Promise((resolve, reject) => {
       db.query(
-        `select booking.seat, id_booking, booking.id_data,profile.id_profile,movies.movie_name,category.category,cinemas.cinema_name, cinemas.cinema_room,cinemas.price,
+        `select booking.date,booking.seat, id_booking, booking.id_data,profile.id_profile,movies.movie_name,category.category,cinemas.cinema_name, cinemas.cinema_room,cinemas.price,
             profile.email,profile.phone,profile.first_name from booking
             left join data_movies on booking.id_data=data_movies.id_data     
             left join movies on movies.id_movies = data_movies.id_movies      
