@@ -72,9 +72,9 @@ const bookingModel = {
           }
         );
       }
-      setTimeout(() => {
-        return resolve("Transaction Success!");
-      }, 1000);
+      // setTimeout(() => {
+      //   return resolve("Transaction Success!");
+      // }, 1000);
     });
   },
 };
