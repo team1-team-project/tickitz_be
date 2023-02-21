@@ -35,12 +35,12 @@ const bookingModel = {
           [seats[i]],
           (errGetSeat, resGetSeat) => {
             if (errGetSeat) return reject(errGetSeat.message);
-            db.query(
-              `SELECT id_data FROM data_movies WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4`,
-              [id_movies, id_time, id_room, seats[i]],
-              (errData, resData) => {
-                if (errData) return reject(errData.message);
-                seats.map((item) => {
+            seats.map((item) => {
+              db.query(
+                `SELECT id_data FROM data_movies WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4`,
+                [id_movies, id_time, id_room, seats[i]],
+                (errData, resData) => {
+                  if (errData) return reject(errData.message);
                   db.query(
                     `UPDATE data_movies SET status='sold' WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4`,
                     [id_movies, id_time, id_room, item],
@@ -68,9 +68,9 @@ const bookingModel = {
                       }
                     }
                   );
-                });
-              }
-            );
+                }
+              );
+            });
           }
         );
       }
