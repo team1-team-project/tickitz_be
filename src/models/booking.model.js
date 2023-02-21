@@ -49,7 +49,7 @@ const bookingModel = {
                         return reject(err);
                       } else {
                         db.query(
-                          `INSERT INTO booking VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+                          `INSERT INTO booking VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id_booking`,
                           [
                             id_booking,
                             id_payment,
@@ -63,6 +63,7 @@ const bookingModel = {
                             if (error) {
                               return reject(error);
                             }
+                            return resolve(result.rows);
                           }
                         );
                       }
@@ -74,7 +75,6 @@ const bookingModel = {
           }
         );
       }
-      return resolve("Transaction Success!");
     });
   },
 };
