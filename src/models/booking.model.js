@@ -57,7 +57,7 @@ const bookingModel = {
                             resData.rows[0].id_data,
                             date,
                             total_payment,
-                            resGetSeat.rows[0].seat_number,
+                            seat,
                           ],
                           (error, result) => {
                             if (error) {
