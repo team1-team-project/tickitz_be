@@ -28,27 +28,27 @@ const bookingModel = {
   }) => {
     return new Promise((resolve, reject) => {
       const id_booking = uuidv4();
-      const seats = seat.split(",");
-      for (let i = 0; i < seats.length; i++) {
+      // const seats = seat.split(",");
+      for (let i = 0; i < seat.length; i++) {
         db.query(
           `SELECT seat_number FROM seat WHERE id_seat=$1`,
-          [seats[i]],
+          [seat[i]],
           (errGetSeat, resGetSeat) => {
             if (errGetSeat) return reject(errGetSeat.message);
             db.query(
               `SELECT id_data FROM data_movies WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4`,
-              [id_movies, id_time, id_room, seats[i]],
+              [id_movies, id_time, id_room, seat[i]],
               (errData, resData) => {
                 if (errData) return reject(errData.message);
                 db.query(
                   `UPDATE data_movies SET status='sold' WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4`,
-                  [id_movies, id_time, id_room, seats[i]],
+                  [id_movies, id_time, id_room, seat[i]],
                   (err, res) => {
                     if (err) {
                       return reject(err);
                     } else {
                       db.query(
-                        `INSERT INTO booking VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+                        `INSERT INTO booking VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id_booking`,
                         [
                           id_booking,
                           id_payment,
@@ -72,7 +72,7 @@ const bookingModel = {
           }
         );
       }
-      return resolve("Transaction Success!");
+      return resolve("Transfer Success");
     });
   },
 };
