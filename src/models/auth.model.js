@@ -18,7 +18,8 @@ const authModel = {
             result.rows[0].password,
             function (err, hashingResult) {
               if (err) return reject(err.message);
-              if (!hashingResult) return reject("username/password salah.");
+              // if (!hashingResult) return reject("username/password salah.");
+              if (!hashingResult) return reject("email/password salah.");
               return resolve(result.rows[0]);
             }
           );
@@ -26,6 +27,23 @@ const authModel = {
       );
     });
   },
+
+  // register: ({ first_name, email, password }) => {
+  //   return new Promise((resolve, reject) => {
+  //     db.query(
+  //       `INSERT INTO profile (id_profile, first_name, email, password) VALUES($1, $2, $3, $4)`,
+  //       [uuidv4(), first_name, email, password],
+  //       (err, result) => {
+  //         if (err) {
+  //           console.log(err);
+  //           return reject(err.message);
+  //         } else {
+  //           return resolve("Success Register!");
+  //         }
+  //       }
+  //     );
+  //   });
+  // },
 
   register: ({ first_name, email, password }) => {
     return new Promise((resolve, reject) => {
@@ -37,7 +55,8 @@ const authModel = {
             console.log(err);
             return reject(err.message);
           } else {
-            return resolve("Success Register!");
+            console.log({ first_name, email, password });
+            return resolve({ first_name, email, password });
           }
         }
       );
@@ -56,31 +75,37 @@ const authModel = {
               `UPDATE profile SET 
                   password='${password || result.rows[0].password}'
                      WHERE id_profile='${id_profile}'`,
-                     (err, result) => {
-                        if(err) {
-                            return reject(err.message)
-                        } else{
-                            return resolve({
-                                id_profile, password
-                            })
-                        }
-                     })
-            }
-        })
-    })
+              (err, result) => {
+                if (err) {
+                  return reject(err.message);
+                } else {
+                  return resolve({
+                    id_profile,
+                    password,
+                  });
+                }
+              }
+            );
+          }
+        }
+      );
+    });
   },
 
   getProfileByEmail: (email) => {
     return new Promise((resolve, reject) => {
-      db.query(`select id_profile from profile where email='${email}'`, (err, result) => {
-        if(err) {
-          return reject(err.message)
-        } else {
-          return resolve(result.rows[0])
+      db.query(
+        `select id_profile from profile where email='${email}'`,
+        (err, result) => {
+          if (err) {
+            return reject(err.message);
+          } else {
+            return resolve(result.rows[0]);
+          }
         }
-      })
-    })
-  }
+      );
+    });
+  },
 };
 
 module.exports = authModel;
