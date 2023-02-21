@@ -40,41 +40,41 @@ const bookingModel = {
               [id_movies, id_time, id_room, seats[i]],
               (errData, resData) => {
                 if (errData) return reject(errData.message);
-                db.query(
-                  `UPDATE data_movies SET status='sold' WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4`,
-                  [id_movies, id_time, id_room, seats[i]],
-                  (err, res) => {
-                    if (err) {
-                      return reject(err);
-                    } else {
-                      db.query(
-                        `INSERT INTO booking VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-                        [
-                          id_booking,
-                          id_payment,
-                          id_profile,
-                          resData.rows[0].id_data,
-                          date,
-                          total_payment,
-                          resGetSeat.rows[0].seat_number,
-                        ],
-                        (error, result) => {
-                          if (error) {
-                            return reject(error);
+                seats.map((item) => {
+                  db.query(
+                    `UPDATE data_movies SET status='sold' WHERE id_movies=$1 AND id_time=$2 AND id_room=$3 AND id_seat=$4`,
+                    [id_movies, id_time, id_room, item],
+                    (err, res) => {
+                      if (err) {
+                        return reject(err);
+                      } else {
+                        db.query(
+                          `INSERT INTO booking VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+                          [
+                            id_booking,
+                            id_payment,
+                            id_profile,
+                            resData.rows[0].id_data,
+                            date,
+                            total_payment,
+                            resGetSeat.rows[0].seat_number,
+                          ],
+                          (error, result) => {
+                            if (error) {
+                              return reject(error);
+                            }
                           }
-                        }
-                      );
+                        );
+                      }
                     }
-                  }
-                );
+                  );
+                });
               }
             );
           }
         );
       }
-      // setTimeout(() => {
-      //   return resolve("Transaction Success!");
-      // }, 1000);
+      return resolve("Transaction Success!");
     });
   },
 };
