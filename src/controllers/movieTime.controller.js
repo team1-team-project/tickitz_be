@@ -4,7 +4,7 @@ const movieTimeModel = require("../models/movieTime.model");
 const movieTimeController = {
   getMovieTime: (req, res) => {
     return movieTimeModel
-      .getMovieTime(req.params.id, req.body.id_cinema)
+      .getMovieTime(req.params.id, req.params.id_cinema)
       .then((result) => {
         res.send({
           Data: result,
