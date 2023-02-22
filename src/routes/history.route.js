@@ -10,6 +10,6 @@ const historyController = require("../controllers/history.controller");
   body("page").toInt(),
   historyController.searchSorthistory
 );*/
-router.get("/", historyController.detailhistory);
+router.get("/:id_profile", historyController.detailhistory);
 
 module.exports = router;

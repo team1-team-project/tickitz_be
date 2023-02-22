@@ -2,7 +2,7 @@ const { query } = require("express");
 const db = require("../helpers/connection");
 
 const historyModel = {
-  historyByIdProfile: ({ id_profile }) => {
+  historyByIdProfile: (id_profile) => {
     return new Promise((resolve, reject) => {
       const query = `SELECT id_booking,booking.id_data,movies.movie_name,cinemas.cinema_name,profile.email,profile.phone,profile.first_name,date from booking  
       inner join data_movies on booking.id_data=data_movies.id_data
