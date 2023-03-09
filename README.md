@@ -68,6 +68,6 @@ Team:  Fun(a)ction Tech - [funactiontech@gmail.com](mailto:funactiontech@gmail.c
 ## Team
 - [Mohammad Yasfiq](https://github.com/Yasfiq)
 - [Maulana Rheza Ardiansyah](https://github.com/MaulanaRhezaArdiansyah)
-- [Ajimas](https://github.com/jiamudza)
+- [Ajimas Bagus Kurniawan](https://github.com/jiamudza)
 - [Muhammad Risky Fadillah](https://github.com/RiskiFadillah)
 - [M. Raynoalief Ridwan](https://github.com/reynoalief)
